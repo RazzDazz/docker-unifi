@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get upgrade
 
 # Install java 8
-RUN apt-get install -y oracle-java8-installer
+RUN apt-get install -y openjdk-8-jre-headless
 
 # apt-key needs dirmngr
 RUN apt-get install -y dirmngr
