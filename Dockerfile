@@ -1,4 +1,4 @@
-FROM ubuntu:17:10
+FROM ubuntu:17.04
 MAINTAINER RazzDazz
 # Using instructions from
 # https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-Update-via-APT-on-Debian-or-Ubuntu
