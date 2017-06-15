@@ -9,7 +9,7 @@ RUN apt-get update
 RUN apt-get upgrade
 
 # apt-key needs dirmngr
-RUN apt-get install dirmngr
+RUN apt-get install -y dirmngr
 
 # Add the GPG keys for Ubiquiti
 # RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
