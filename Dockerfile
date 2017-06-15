@@ -7,4 +7,4 @@ RUN apt-get update
 RUN apt-get upgrade
 
 # Add the GPG keys for Ubiquiti
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
