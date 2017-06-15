@@ -6,7 +6,8 @@ MAINTAINER RazzDazz
 ENV DEBIAN_FRONTEND noninteractive
 
 # Add the GPG keys for Ubiquiti
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+# RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 
 RUN apt-get update
 RUN apt-get upgrade
