@@ -5,6 +5,9 @@ MAINTAINER RazzDazz
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# apt-key needs dirmngr
+RUN apt install dirmngr
+
 # Add the GPG keys for Ubiquiti
 # RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
