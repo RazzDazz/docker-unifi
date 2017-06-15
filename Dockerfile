@@ -22,3 +22,6 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc
 # Update packages for installation of unifi controller
 RUN apt-get update
 RUN apt-get upgrade
+
+# Install/Upgrade unifi-controller
+RUN apt-get install unifi
