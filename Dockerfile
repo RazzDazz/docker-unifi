@@ -12,5 +12,5 @@ RUN apt-get upgrade
 RUN apt-get install -y dirmngr
 
 # Add the GPG keys for Ubiquiti
-# RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 # RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
