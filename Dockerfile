@@ -54,4 +54,5 @@ RUN apt-get upgrade
 RUN apt-get install -y unifi
 
 # Run unifi-controller
-CMD java -jar /opt/UniFi/lib/ace.jar start
+# CMD java -jar /opt/UniFi/lib/ace.jar start
+CMD /etc/init.d/unifi start
