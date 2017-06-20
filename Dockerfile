@@ -35,10 +35,10 @@ RUN apt-get update
 RUN apt-get upgrade
 
 # Install java 8
-RUN apt-get install -y openjdk-8-jre-headless
+RUN apt-get install -yqq openjdk-8-jre-headless
 
 # apt-key needs dirmngr
-RUN apt-get install -y dirmngr
+RUN apt-get install -yqq dirmngr
 
 # Add the GPG keys for Ubiquiti
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
@@ -51,7 +51,7 @@ RUN apt-get update
 RUN apt-get upgrade
 
 # Install/Upgrade unifi-controller
-RUN apt-get install -y unifi
+RUN apt-get install -yqq unifi
 
 # Run unifi-controller
 CMD java -jar /usr/lib/unifi/lib/ace.jar start
