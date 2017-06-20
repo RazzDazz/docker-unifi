@@ -62,8 +62,8 @@ RUN touch /logs/server.log
 RUN mkdir p /usr/lib/unifi/logs/
 RUN ln -s /logs/server.log /usr/lib/unifi/logs/server.log
 # Publish directories of controller
-# VOLUME /usr/lib/unifi/data
-# VOLUME /usr/lib/unifi/logs
+VOLUME /usr/lib/unifi/data
+VOLUME /usr/lib/unifi/logs
 
 # Run unifi-controller
 CMD java -jar /usr/lib/unifi/lib/ace.jar start
