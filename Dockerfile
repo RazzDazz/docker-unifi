@@ -32,8 +32,8 @@ EXPOSE 8843
 # EXPOSE 5656-5699
 
 # Update packages to install dirmngr
-RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get update -yqq
+RUN apt-get upgrade -yqq
 
 # Install java 8
 RUN apt-get install -yqq openjdk-8-jre-headless
@@ -48,8 +48,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
 
 # Update packages for installation of unifi controller
-RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get update -yqq
+RUN apt-get upgrade -yqq
 
 # Install/Upgrade unifi-controller
 RUN apt-get install -yqq unifi
