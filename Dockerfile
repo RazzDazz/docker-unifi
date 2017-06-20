@@ -54,6 +54,12 @@ RUN apt-get upgrade
 # Install/Upgrade unifi-controller
 RUN apt-get install -yqq unifi
 
+# Symlink unifi controller, so only /usr/lib/unifi/logs needs to be published
+RUN ln -s /logs/server.log /usr/lib/unifi/logs
+# Publish directories of controller
+VOLUME /usr/lib/unifi/data
+VOLUME /usr/lib/unifi/logs
+
 # Run unifi-controller
 CMD java -jar /usr/lib/unifi/lib/ace.jar start
 # CMD /etc/init.d/unifi start
