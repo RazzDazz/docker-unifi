@@ -56,6 +56,7 @@ RUN apt-get install -yqq unifi
 
 # Preparation for publishing directories
 # Symlink unifi controller, so only /usr/lib/unifi/logs needs to be published
+RUN mkdir /logs
 RUN touch /logs/server.log
 RUN ln -s /logs/server.log /usr/lib/unifi/logs/server.log
 # Publish directories of controller
