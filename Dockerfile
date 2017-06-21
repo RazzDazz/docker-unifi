@@ -9,19 +9,19 @@ ENV DEBIAN_FRONTEND noninteractive
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
 # port for UAP to inform controller unifi.http.port=8080
-EXPOSE 8080
+EXPOSE 8080/tcp
 # port for controller GUI / API, as seen in web browser unifi.https.port=8443 
-EXPOSE 8443
+EXPOSE 8443/tcp
 # port for HTTP portal redirect portal.http.port=8880 
-EXPOSE 8880
+EXPOSE 8880/tcp
 # port for HTTPS portal redirect portal.https.port=8843 
-EXPOSE 8843
+EXPOSE 8843/tcp
 # port used for throughput measurement, including UniFi mobile speedtest unifi.throughput.port=6789 
-# EXPOSE 6789
+EXPOSE 6789/tcp
 #  local-bound port for DB server unifi.db.port=27117
 # EXPOSE 27117
 # UDP port used for STUN. v4.5.2+ unifi.stun.port=3478 
-# EXPOSE 3478
+EXPOSE 3478/udp
 # port 8881 for redirector port for wireless clients (reserved for for device redirector. 
 #   No need to open firewall on controller, but avoid using these ports (v3.2.9+ and v4.6.0+))
 # EXPOSE 8881
@@ -54,17 +54,13 @@ RUN apt-get upgrade -yqq
 # Install/Upgrade unifi-controller
 RUN apt-get install -yqq unifi
 
-# Optimize mongo-db: Don't start as service (maybe not necassary in docker)
-# RUN sed -1's,^\(yyyy=\).*,\1'NEW',' mongodb.conf
-
-# Optimize unifi controller: Use small journal files
-# add unifi.db.extraargs=-smallfiles to system.properties
-
 # Publishing directories
 VOLUME /logs
 VOLUME /usr/lib/unifi/data
 VOLUME /usr/lib/unifi/logs
 
+# Set workdir
+WORKDIR /var/lib/unifi
+
 # Run unifi-controller
 CMD java -jar /usr/lib/unifi/lib/ace.jar start
-# CMD /etc/init.d/unifi start
