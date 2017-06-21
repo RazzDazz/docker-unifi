@@ -55,12 +55,11 @@ RUN apt-get upgrade -yqq
 RUN apt-get install -yqq unifi
 
 # Publishing directories
-VOLUME /logs
 VOLUME /usr/lib/unifi/data
 VOLUME /usr/lib/unifi/logs
 
 # Set workdir
-WORKDIR /var/lib/unifi
+WORKDIR /usr/lib/unifi
 
 # Run unifi-controller
 CMD java -jar /usr/lib/unifi/lib/ace.jar start
