@@ -54,14 +54,14 @@ RUN apt-get upgrade -yqq
 # Install/Upgrade unifi-controller
 RUN apt-get install -yqq unifi
 
-# Preparation for publishing directories
-# Symlink unifi controller server.log, so only /usr/lib/unifi/logs needs to be published
-# Before controller starts server.log und target directory are not created. Do it manually.
-RUN mkdir /logs
-RUN touch /logs/server.log
-RUN mkdir p /usr/lib/unifi/logs/
-RUN ln -s /logs/server.log /usr/lib/unifi/logs/server.log
-# Publish directories of controller
+# Optimize mongo-db: Don't start as service (maybe not necassary in docker)
+# RUN sed -1's,^\(yyyy=\).*,\1'NEW',' mongodb.conf
+
+# Optimize unifi controller: Use small journal files
+# add unifi.db.extraargs=-smallfiles to system.properties
+
+# Publishing directories
+VOLUME /logs
 VOLUME /usr/lib/unifi/data
 VOLUME /usr/lib/unifi/logs
 
