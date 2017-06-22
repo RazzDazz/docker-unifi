@@ -32,14 +32,14 @@ EXPOSE 3478/udp
 # EXPOSE 5656-5699
 
 # Update packages to install dirmngr
-RUN apt-get update -yqq
-RUN apt-get upgrade -yqq
+RUN apt-get -yqq update
+RUN apt-get -yqq upgrade
 
 # Install java 8
-RUN apt-get install -yqq openjdk-8-jre-headless
+RUN apt-get --no-install-recommends -yqq install openjdk-8-jre-headless
 
 # apt-key needs dirmngr
-RUN apt-get install -yqq dirmngr
+RUN apt-get --no-install-recommends -yqq install dirmngr
 
 # Add the GPG keys for Ubiquiti
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
@@ -52,7 +52,7 @@ RUN apt-get update -yqq
 RUN apt-get upgrade -yqq
 
 # Install/Upgrade unifi-controller
-RUN apt-get install -yqq unifi
+RUN apt-get --no-install-recommends -yqq install unifi
 
 # Publishing directories
 VOLUME /usr/lib/unifi/data
@@ -61,6 +61,8 @@ VOLUME /usr/lib/unifi/logs
 # Set workdir
 WORKDIR /usr/lib/unifi
 
-# Run unifi-controller
-# CMD java -jar /usr/lib/unifi/lib/ace.jar start
+# Run unifi-controller via docker exec: 
+#   run directly java command and do not use shell 
+#   this allows clean docker stop (send sigterm to process with pid 1)
+#   further reading: https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers
 CMD ["java","-jar","/usr/lib/unifi/lib/ace.jar","start"]
