@@ -17,6 +17,12 @@ https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
 
 ## Optimizations
 
-Reduce mongoDB journal size
-- add `unifi.db.extraargs=--smallfiles` to system.properties
-- delete files in folder 'unifi controller/data/db/journal'
+###### Reduce mongoDB journal size
+Check, if in folder `unifi controller/data/db/journal` filesize is 1 gb.
+
+1. Stop container
+2. Add `unifi.db.extraargs=--smallfiles` to system.properties
+3. Delete files in folder `unifi controller/data/db/journal`
+4. Start container
+
+Check filesize again. Should be 128 mb each.
