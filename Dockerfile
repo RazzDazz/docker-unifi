@@ -62,4 +62,5 @@ VOLUME /usr/lib/unifi/logs
 WORKDIR /usr/lib/unifi
 
 # Run unifi-controller
-CMD java -jar /usr/lib/unifi/lib/ace.jar start
+# CMD java -jar /usr/lib/unifi/lib/ace.jar start
+CMD ["java","-jar","/usr/lib/unifi/lib/ace.jar","start"]
