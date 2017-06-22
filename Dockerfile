@@ -9,19 +9,19 @@ ENV DEBIAN_FRONTEND noninteractive
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
 # port for UAP to inform controller unifi.http.port=8080
-EXPOSE 8080/tcp
+# EXPOSE 8080/tcp
 # port for controller GUI / API, as seen in web browser unifi.https.port=8443 
-EXPOSE 8443/tcp
+# EXPOSE 8443/tcp
 # port for HTTP portal redirect portal.http.port=8880 
-EXPOSE 8880/tcp
+# EXPOSE 8880/tcp
 # port for HTTPS portal redirect portal.https.port=8843 
-EXPOSE 8843/tcp
+# EXPOSE 8843/tcp
 # port used for throughput measurement, including UniFi mobile speedtest unifi.throughput.port=6789 
-EXPOSE 6789/tcp
+# EXPOSE 6789/tcp
 #  local-bound port for DB server unifi.db.port=27117
 # EXPOSE 27117
 # UDP port used for STUN. v4.5.2+ unifi.stun.port=3478 
-EXPOSE 3478/udp
+# EXPOSE 3478/udp
 # port 8881 for redirector port for wireless clients (reserved for for device redirector. 
 #   No need to open firewall on controller, but avoid using these ports (v3.2.9+ and v4.6.0+))
 # EXPOSE 8881
@@ -31,28 +31,26 @@ EXPOSE 3478/udp
 # UDP ports 5656-5699 for AP-EDU Broadcasts
 # EXPOSE 5656-5699
 
-# Update packages to install dirmngr
-RUN apt-get -yqq update
-RUN apt-get -yqq upgrade
+EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp
 
-# Install java 8
-RUN apt-get --no-install-recommends -yqq install openjdk-8-jre-headless
+# Update packages to install java
+RUN apt-get -yqq update 
+    && apt-get -yqq upgrade
+    && apt-get --no-install-recommends -yqq install openjdk-8-jre-headless
 
-# apt-key needs dirmngr
-RUN apt-get --no-install-recommends -yqq install dirmngr
-
-# Add the GPG keys for Ubiquiti
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+# Update packages to install dirmngr needed by apt-key and get GPG keys for Ubiquiti
+RUN apt-get -yqq update 
+    && apt-get -yqq upgrade
+    && apt-get --no-install-recommends -yqq install dirmngr
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 
 # Add sources for Ubiquiti
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
 
 # Update packages for installation of unifi controller
 RUN apt-get update -yqq
-RUN apt-get upgrade -yqq
-
-# Install/Upgrade unifi-controller
-RUN apt-get --no-install-recommends -yqq install unifi
+    && apt-get upgrade -yqq
+    && apt-get --no-install-recommends -yqq install unifi
 
 # Publishing directories
 VOLUME /usr/lib/unifi/data
