@@ -11,9 +11,11 @@ https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
 - log directory: `/usr/lib/unifi/logs`
 
 ## Sample directory structure on host
--- unifi controller</br>
-----|-- logs</br>
-----|-- data</br>
+```
+-- unifi controller
+    |-- logs
+    |-- data
+```
 
 ## Optimizations
 
