@@ -1,22 +1,22 @@
-Controller for unifi controller to run on a synology nas</br>
-</br>
-Using instructions from</br>
-https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-Update-via-APT-on-Debian-or-Ubuntu</br>
-</br>
-Exposed ports:</br>
-https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used</br>
-</br>
-Volumes</br>
-/usr/lib/unifi/data</br>
-/usr/lib/unifi/logs</br>
-</br>
-Sample directory structure on host</br>
+# Container for unifi controller to run on a synology nas
+
+## Using instructions from
+https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-Update-via-APT-on-Debian-or-Ubuntu
+
+## Exposed ports:
+https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
+
+## Volumes
+- data directory: `/usr/lib/unifi/data`
+- log directory: `/usr/lib/unifi/logs`
+
+## Sample directory structure on host
 -- unifi controller</br>
 ----|-- logs</br>
 ----|-- data</br>
 
-Optimizations
+## Optimizations
 
 Reduce mongoDB journal size
-- add 'unifi.db.extraargs=--smallfiles' to system.properties
+- add `unifi.db.extraargs=--smallfiles` to system.properties
 - delete files in folder 'unifi controller/data/db/journal'
