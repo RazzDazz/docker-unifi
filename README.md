@@ -28,3 +28,8 @@ Check, if in folder `unifi controller/data/db/journal` filesize is 1 gb.
 4. Start container
 
 Check filesize again. Should be 128 mb each.
+
+## Todos
+- [ ] Optimize Dockerfile with labels for version etc.
+- [ ] Add instruction to run container
+- [ ] What else?
