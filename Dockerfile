@@ -34,22 +34,22 @@ ENV DEBIAN_FRONTEND noninteractive
 EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp
 
 # Update packages to install java
-RUN apt-get -yqq update 
-    && apt-get -yqq upgrade
+RUN apt-get -yqq update /
+    && apt-get -yqq upgrade /
     && apt-get --no-install-recommends -yqq install openjdk-8-jre-headless
 
 # Update packages to install dirmngr needed by apt-key and get GPG keys for Ubiquiti
-RUN apt-get -yqq update 
-    && apt-get -yqq upgrade
-    && apt-get --no-install-recommends -yqq install dirmngr
+RUN apt-get -yqq update /
+    && apt-get -yqq upgrade /
+    && apt-get --no-install-recommends -yqq install dirmngr /
     && apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 
 # Add sources for Ubiquiti
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
 
 # Update packages for installation of unifi controller
-RUN apt-get update -yqq
-    && apt-get upgrade -yqq
+RUN apt-get update -yqq /
+    && apt-get upgrade -yqq /
     && apt-get --no-install-recommends -yqq install unifi
 
 # Publishing directories
