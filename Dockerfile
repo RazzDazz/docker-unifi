@@ -37,15 +37,16 @@ EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp
 # Update packages to install java
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
+    apt-get --no-install-recommends -yqq wget
     apt-get --no-install-recommends -yqq install openjdk-8-jre-headless && \
     rm -rf /var/lib/apt/lists/*
 
 # Update packages to install dirmngr needed by apt-key and get GPG keys for Ubiquiti
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
-    apt-get --no-install-recommends -yqq install gnupg2 && \
-    apt-get --no-install-recommends -yqq install dirmngr && \
-    apt-get --no-install-recommends -yqq install apt-transport-https && \
+#    apt-get --no-install-recommends -yqq install gnupg2 && \
+#    apt-get --no-install-recommends -yqq install dirmngr && \
+#    apt-get --no-install-recommends -yqq install apt-transport-https && \
     # apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
     wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
     rm -rf /var/lib/apt/lists/*
