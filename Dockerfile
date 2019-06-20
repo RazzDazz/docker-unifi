@@ -43,7 +43,7 @@ RUN apt-get -yqq update && \
 # Update packages to install dirmngr needed by apt-key and get GPG keys for Ubiquiti
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
-    apt-get update && apt-get install -y gnupg2 && \
+    apt-get update && apt-get -yqq install gnupg2 && \
     apt-get --no-install-recommends -yqq install dirmngr && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
     rm -rf /var/lib/apt/lists/*
