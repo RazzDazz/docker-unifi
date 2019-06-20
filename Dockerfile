@@ -37,7 +37,7 @@ EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp
 # Update packages to install java
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
-    apt-get --no-install-recommends -yqq wget
+    apt-get --no-install-recommends -yqq install wget && \
     apt-get --no-install-recommends -yqq install openjdk-8-jre-headless && \
     rm -rf /var/lib/apt/lists/*
 
