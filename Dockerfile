@@ -5,7 +5,7 @@ MAINTAINER RazzDazz
 
 ENV REFRESHED_AT 2019-06-20
 ENV DEBIAN_FRONTEND noninteractive
-# Controller Version 5.10.24
+# Controller Version 5.10.25
 
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
@@ -37,7 +37,6 @@ EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp
 # Update packages to install java
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
-    apt-get --no-install-recommends -yqq install wget && \
     apt-get --no-install-recommends -yqq install openjdk-8-jre-headless && \
     rm -rf /var/lib/apt/lists/*
 
@@ -45,28 +44,25 @@ RUN apt-get -yqq update && \
 RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
     apt-get --no-install-recommends -yqq install gnupg2 && \
-#    apt-get --no-install-recommends -yqq install dirmngr && \
-#    apt-get --no-install-recommends -yqq install apt-transport-https && \
-    # apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
-    wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
+    apt-get --no-install-recommends -yqq install dirmngr && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install mongodb
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-# RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list
-RUN apt-get update
-RUN apt-get install mongodb-org
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6  && \
+    echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list && \
+    apt-get update -yqq  && \
+    apt-get --no-install-recommends -yqq install mongodb-org && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add sources for Ubiquiti
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
 
 # Update packages for installation of unifi controller
-RUN apt-get update -yqq
-RUN apt-get upgrade -yqq
-# RUN apt-get --no-install-recommends -yqq install unifi
-RUN apt-get install unifi
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update -yqq && \
+    apt-get upgrade -yqq && \
+    apt-get --no-install-recommends -yqq install unifi && \
+    rm -rf /var/lib/apt/lists/*
 
 # Publishing directories
 VOLUME /usr/lib/unifi/data
