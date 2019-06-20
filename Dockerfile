@@ -5,7 +5,7 @@ MAINTAINER RazzDazz
 
 ENV REFRESHED_AT 2019-06-20
 ENV DEBIAN_FRONTEND noninteractive
-# Controller Version 5.10.24
+# Controller Version 5.10.25
 
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
@@ -55,8 +55,8 @@ RUN apt-get -yqq update && \
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list
-RUN apt-get update
-RUN apt-get install mongodb-org
+RUN apt-get update -yqq
+RUN apt-get --no-install-recommends -yqq install mongodb-org
 
 # Add sources for Ubiquiti
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
