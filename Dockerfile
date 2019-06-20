@@ -47,7 +47,7 @@ RUN apt-get -yqq update && \
     apt-get --no-install-recommends -yqq install dirmngr && \
     apt-get --no-install-recommends -yqq install apt-transport-https && \
     # apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
-    wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg 
+    wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
     rm -rf /var/lib/apt/lists/*
 
 # Update packages to install mongodb
