@@ -46,13 +46,14 @@ RUN apt-get -yqq update && \
     apt-get --no-install-recommends -yqq install gnupg2 && \
     apt-get --no-install-recommends -yqq install dirmngr && \
     apt-get --no-install-recommends -yqq install apt-transport-https && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
+    # apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
+    wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg 
     rm -rf /var/lib/apt/lists/*
 
 # Update packages to install mongodb
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-RUN apt-get update
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+#RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+#RUN apt-get update
 
 # Add sources for Ubiquiti
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
@@ -60,7 +61,8 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc
 # Update packages for installation of unifi controller
 RUN apt-get update -yqq
 RUN apt-get upgrade -yqq
-RUN apt-get --no-install-recommends -yqq install unifi
+# RUN apt-get --no-install-recommends -yqq install unifi
+RUN apt-get install unifi
 RUN rm -rf /var/lib/apt/lists/*
 
 # Publishing directories
