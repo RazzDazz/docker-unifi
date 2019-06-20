@@ -45,6 +45,7 @@ RUN apt-get -yqq update && \
     apt-get -yqq upgrade && \
     apt-get --no-install-recommends -yqq install gnupg2 && \
     apt-get --no-install-recommends -yqq install dirmngr && \
+    apt-get --no-install-recommends -yqq install apt-transport-https && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
     rm -rf /var/lib/apt/lists/*
 
@@ -52,10 +53,10 @@ RUN apt-get -yqq update && \
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubiquiti.list
 
 # Update packages for installation of unifi controller
-RUN apt-get update -yqq && \
-    apt-get upgrade -yqq && \
-    apt-get --no-install-recommends -yqq install unifi && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -yqq
+RUN apt-get upgrade -yqq
+RUN apt-get --no-install-recommends -yqq install unifi
+RUN rm -rf /var/lib/apt/lists/*
 
 # Publishing directories
 VOLUME /usr/lib/unifi/data
