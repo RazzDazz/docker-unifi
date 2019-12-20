@@ -5,7 +5,7 @@ MAINTAINER RazzDazz
 
 ENV REFRESHED_AT 2019-06-20
 ENV DEBIAN_FRONTEND noninteractive
-# Controller Version 5.10.25
+# Controller Version 5.12.35
 
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
