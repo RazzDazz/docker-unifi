@@ -3,9 +3,9 @@ MAINTAINER RazzDazz
 # Using instructions from
 # https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-Update-via-APT-on-Debian-or-Ubuntu
 
-ENV REFRESHED_AT 2019-12-20
+ENV REFRESHED_AT 2020-04-19
 ENV DEBIAN_FRONTEND noninteractive
-# Controller Version 5.12.35
+# Controller Version 5.12.66
 
 # Ports used by unfi controller
 # https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
